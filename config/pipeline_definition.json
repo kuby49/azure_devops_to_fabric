@@ -1,0 +1,202 @@
+{
+  "properties": {
+    "parameters": {
+      "full_load": {
+        "defaultValue": false,
+        "type": "bool"
+      }
+    },
+    "activities": [
+      {
+        "dependsOn": [],
+        "typeProperties": {
+          "notebookId": "3c0c5473-40f3-415b-874b-522de6ff7cd8",
+          "workspaceId": "00000000-0000-0000-0000-000000000001",
+          "parameters": {
+            "full_load": {
+              "value": "@pipeline().parameters.full_load",
+              "type": "bool"
+            }
+          }
+        },
+        "type": "TridentNotebook",
+        "name": "Bronze_Ingest_WorkItems",
+        "policy": {
+          "retry": 1,
+          "timeout": "0.02:00:00",
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "dependsOn": [],
+        "typeProperties": {
+          "workspaceId": "00000000-0000-0000-0000-000000000001",
+          "notebookId": "381b4883-fdfa-4a82-ac8f-efffb87d12d5"
+        },
+        "type": "TridentNotebook",
+        "name": "Bronze_Ingest_Boards",
+        "policy": {
+          "retry": 1,
+          "timeout": "0.02:00:00",
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "dependsOn": [],
+        "typeProperties": {
+          "notebookId": "dedbaef5-c28b-4ffa-bedc-b40c37548cec",
+          "workspaceId": "00000000-0000-0000-0000-000000000001",
+          "parameters": {
+            "full_load": {
+              "value": "@pipeline().parameters.full_load",
+              "type": "bool"
+            }
+          }
+        },
+        "type": "TridentNotebook",
+        "name": "Bronze_Ingest_Repos",
+        "policy": {
+          "retry": 1,
+          "timeout": "0.02:00:00",
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "dependsOn": [
+          {
+            "activity": "Bronze_Ingest_WorkItems",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Bronze_Ingest_Boards",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "workspaceId": "00000000-0000-0000-0000-000000000001",
+          "notebookId": "58666d7e-391f-4089-844a-f9ba5f437133"
+        },
+        "type": "TridentNotebook",
+        "name": "Silver_Transform_WorkItems",
+        "policy": {
+          "retry": 1,
+          "timeout": "0.01:00:00",
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "dependsOn": [
+          {
+            "activity": "Bronze_Ingest_Boards",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "workspaceId": "00000000-0000-0000-0000-000000000001",
+          "notebookId": "7ad4dd02-97e1-4473-91bc-7cd877c3f947"
+        },
+        "type": "TridentNotebook",
+        "name": "Silver_Transform_Boards",
+        "policy": {
+          "retry": 1,
+          "timeout": "0.01:00:00",
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "dependsOn": [
+          {
+            "activity": "Bronze_Ingest_Repos",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "workspaceId": "00000000-0000-0000-0000-000000000001",
+          "notebookId": "4208092f-22ff-4ed6-8230-bcba8e7f7174"
+        },
+        "type": "TridentNotebook",
+        "name": "Silver_Transform_Repos",
+        "policy": {
+          "retry": 1,
+          "timeout": "0.01:00:00",
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "dependsOn": [
+          {
+            "activity": "Silver_Transform_WorkItems",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Silver_Transform_Boards",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Silver_Transform_Repos",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "workspaceId": "00000000-0000-0000-0000-000000000001",
+          "notebookId": "191de556-dc5c-496c-9fae-bd85f5309c5d"
+        },
+        "type": "TridentNotebook",
+        "name": "Gold_Build_Facts",
+        "policy": {
+          "retry": 1,
+          "timeout": "0.01:00:00",
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "dependsOn": [
+          {
+            "activity": "Silver_Transform_WorkItems",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Silver_Transform_Boards",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Silver_Transform_Repos",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "workspaceId": "00000000-0000-0000-0000-000000000001",
+          "notebookId": "db06055e-d31f-4152-a975-b636b73aa5cc"
+        },
+        "type": "TridentNotebook",
+        "name": "Gold_Build_Dimensions",
+        "policy": {
+          "retry": 1,
+          "timeout": "0.01:00:00",
+          "retryIntervalInSeconds": 60
+        }
+      }
+    ],
+    "description": "Orchestrates Azure DevOps data ingestion: Bronze (parallel) -> Silver (parallel) -> Gold (parallel)"
+  }
+}

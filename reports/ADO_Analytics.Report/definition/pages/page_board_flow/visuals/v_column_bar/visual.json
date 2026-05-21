@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "v_column_bar",
+  "position": {
+    "x": 20,
+    "y": 140,
+    "z": 1,
+    "height": 300,
+    "width": 600,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_board_flow"
+                    }
+                  },
+                  "Property": "board_column"
+                }
+              },
+              "queryRef": "fact_board_flow.board_column",
+              "nativeQueryRef": "board_column"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_board_flow"
+                    }
+                  },
+                  "Property": "WIP Count"
+                }
+              },
+              "queryRef": "fact_board_flow.WIP Count",
+              "nativeQueryRef": "WIP Count"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

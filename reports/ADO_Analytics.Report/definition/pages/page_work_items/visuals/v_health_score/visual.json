@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "v_health_score",
+  "position": {
+    "x": 640,
+    "y": 440,
+    "z": 8,
+    "height": 120,
+    "width": 300,
+    "tabOrder": 8
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_backlog_health"
+                    }
+                  },
+                  "Property": "Backlog Health Score"
+                }
+              },
+              "queryRef": "fact_backlog_health.Backlog Health Score",
+              "nativeQueryRef": "Backlog Health Score"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

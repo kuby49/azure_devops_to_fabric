@@ -1,0 +1,121 @@
+table fact_commits
+	lineageTag: 10000001-0001-0001-0005-000000000001
+	sourceLineageTag: fact_commits
+
+	measure 'Total Commits' = COUNTROWS(fact_commits)
+		formatString: #,##0
+		lineageTag: 20000001-0001-0001-0005-000000000001
+
+	measure 'Active Contributors' = DISTINCTCOUNT(fact_commits[author_name])
+		formatString: #,##0
+		lineageTag: 20000001-0001-0001-0005-000000000002
+
+	measure 'Total Files Changed' = SUM(fact_commits[total_files_changed])
+		formatString: #,##0
+		lineageTag: 20000001-0001-0001-0005-000000000003
+
+	column commit_id
+		dataType: string
+		isKey
+		lineageTag: 30000001-0001-0001-0005-000000000001
+		sourceLineageTag: commit_id
+		summarizeBy: none
+		sourceColumn: commit_id
+
+	column repo_id
+		dataType: string
+		lineageTag: 30000001-0001-0001-0005-000000000002
+		sourceLineageTag: repo_id
+		summarizeBy: none
+		sourceColumn: repo_id
+
+	column repo_name
+		dataType: string
+		lineageTag: 30000001-0001-0001-0005-000000000003
+		sourceLineageTag: repo_name
+		summarizeBy: none
+		sourceColumn: repo_name
+
+	column project_name
+		dataType: string
+		lineageTag: 30000001-0001-0001-0005-000000000004
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+	column author_name
+		dataType: string
+		lineageTag: 30000001-0001-0001-0005-000000000005
+		sourceLineageTag: author_name
+		summarizeBy: none
+		sourceColumn: author_name
+
+	column author_email
+		dataType: string
+		isHidden
+		lineageTag: 30000001-0001-0001-0005-000000000006
+		sourceLineageTag: author_email
+		summarizeBy: none
+		sourceColumn: author_email
+
+	column author_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 30000001-0001-0001-0005-000000000007
+		sourceLineageTag: author_date
+		summarizeBy: none
+		sourceColumn: author_date
+
+	column message
+		dataType: string
+		isHidden
+		lineageTag: 30000001-0001-0001-0005-000000000008
+		sourceLineageTag: message
+		summarizeBy: none
+		sourceColumn: message
+
+	column files_added
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0001-0005-000000000009
+		sourceLineageTag: files_added
+		summarizeBy: sum
+		sourceColumn: files_added
+
+	column files_edited
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0001-0005-000000000010
+		sourceLineageTag: files_edited
+		summarizeBy: sum
+		sourceColumn: files_edited
+
+	column files_deleted
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0001-0005-000000000011
+		sourceLineageTag: files_deleted
+		summarizeBy: sum
+		sourceColumn: files_deleted
+
+	column total_files_changed
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0001-0005-000000000012
+		sourceLineageTag: total_files_changed
+		summarizeBy: sum
+		sourceColumn: total_files_changed
+
+	column refreshed_at
+		dataType: dateTime
+		isHidden
+		lineageTag: 30000001-0001-0001-0005-000000000013
+		sourceLineageTag: refreshed_at
+		summarizeBy: none
+		sourceColumn: refreshed_at
+
+	partition fact_commits = entity
+		mode: directLake
+		source
+			entityName: fact_commits
+			expressionSource: 'DirectLake - ado_gold'

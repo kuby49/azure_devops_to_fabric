@@ -1,0 +1,108 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "v_pr_table",
+  "position": {
+    "x": 20,
+    "y": 420,
+    "z": 6,
+    "height": 280,
+    "width": 1220,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_pull_requests"
+                    }
+                  },
+                  "Property": "title"
+                }
+              },
+              "queryRef": "fact_pull_requests.title",
+              "nativeQueryRef": "title"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_pull_requests"
+                    }
+                  },
+                  "Property": "status"
+                }
+              },
+              "queryRef": "fact_pull_requests.status",
+              "nativeQueryRef": "status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_pull_requests"
+                    }
+                  },
+                  "Property": "created_by"
+                }
+              },
+              "queryRef": "fact_pull_requests.created_by",
+              "nativeQueryRef": "created_by"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_pull_requests"
+                    }
+                  },
+                  "Property": "repo_name"
+                }
+              },
+              "queryRef": "fact_pull_requests.repo_name",
+              "nativeQueryRef": "repo_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_pull_requests"
+                    }
+                  },
+                  "Property": "cycle_time_days"
+                }
+              },
+              "queryRef": "fact_pull_requests.cycle_time_days",
+              "nativeQueryRef": "cycle_time_days"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_pull_requests"
+                    }
+                  },
+                  "Property": "is_merged"
+                }
+              },
+              "queryRef": "fact_pull_requests.is_merged",
+              "nativeQueryRef": "is_merged"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

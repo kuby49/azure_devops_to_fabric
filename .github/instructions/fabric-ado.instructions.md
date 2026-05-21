@@ -1,0 +1,1 @@
+C:/Users/eruskal/.copilot/instructions/fabric-ado.instructions.md

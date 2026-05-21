@@ -1,0 +1,40 @@
+{
+    "fabric": {
+        "workspace_id": "00000000-0000-0000-0000-000000000001",
+        "workspace_name": "AzureDevOps_Analytics",
+        "capacity_id": "00000000-0000-0000-0000-000000000002",
+        "lakehouses": {
+            "bronze": {
+                "id": "00000000-0000-0000-0000-000000000003",
+                "name": "ado_bronze"
+            },
+            "silver": {
+                "id": "00000000-0000-0000-0000-000000000004",
+                "name": "ado_silver"
+            },
+            "gold": {
+                "id": "00000000-0000-0000-0000-000000000005",
+                "name": "ado_gold"
+            }
+        },
+        "pipeline": {
+            "id": "00000000-0000-0000-0000-000000000006",
+            "name": "ADO_Ingestion_Pipeline"
+        }
+    },
+    "azure_devops": {
+        "organization_url": "https://dev.azure.com/your-org",
+        "api_version": "7.1",
+        "scope": "all_projects",
+        "pat_secret_name": "ado_pat"
+    },
+    "ingestion": {
+        "schedule": "daily",
+        "incremental": true
+    },
+    "secrets": {
+        "method": "fabric_keyvault_connection",
+        "keyvault_url": "https://your-keyvault.vault.azure.net/",
+        "fabric_connection_name": "your-keyvault-connection"
+    }
+}

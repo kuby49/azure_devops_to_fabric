@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "v_sprint_backlog",
+  "position": {
+    "x": 20,
+    "y": 420,
+    "z": 6,
+    "height": 280,
+    "width": 1220,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_sprint_backlog"
+                    }
+                  },
+                  "Property": "iteration_id"
+                }
+              },
+              "queryRef": "fact_sprint_backlog.iteration_id",
+              "nativeQueryRef": "iteration_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_sprint_backlog"
+                    }
+                  },
+                  "Property": "work_item_type"
+                }
+              },
+              "queryRef": "fact_sprint_backlog.work_item_type",
+              "nativeQueryRef": "work_item_type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_sprint_backlog"
+                    }
+                  },
+                  "Property": "state"
+                }
+              },
+              "queryRef": "fact_sprint_backlog.state",
+              "nativeQueryRef": "state"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_sprint_backlog"
+                    }
+                  },
+                  "Property": "assigned_to"
+                }
+              },
+              "queryRef": "fact_sprint_backlog.assigned_to",
+              "nativeQueryRef": "assigned_to"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_sprint_backlog"
+                    }
+                  },
+                  "Property": "story_points"
+                }
+              },
+              "queryRef": "fact_sprint_backlog.story_points",
+              "nativeQueryRef": "story_points"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

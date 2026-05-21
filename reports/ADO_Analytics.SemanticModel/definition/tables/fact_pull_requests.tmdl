@@ -1,0 +1,151 @@
+table fact_pull_requests
+	lineageTag: 10000001-0001-0001-0006-000000000001
+	sourceLineageTag: fact_pull_requests
+
+	measure 'Total PRs' = COUNTROWS(fact_pull_requests)
+		formatString: #,##0
+		lineageTag: 20000001-0001-0001-0006-000000000001
+
+	measure 'Open PRs' = CALCULATE(COUNTROWS(fact_pull_requests), fact_pull_requests[status] = "active")
+		formatString: #,##0
+		lineageTag: 20000001-0001-0001-0006-000000000002
+
+	measure 'Merged PRs' = CALCULATE(COUNTROWS(fact_pull_requests), fact_pull_requests[is_merged] = TRUE())
+		formatString: #,##0
+		lineageTag: 20000001-0001-0001-0006-000000000003
+
+	measure 'Avg PR Merge Time (Days)' = AVERAGE(fact_pull_requests[cycle_time_days])
+		formatString: #,##0.1
+		lineageTag: 20000001-0001-0001-0006-000000000004
+
+	column pr_id
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 30000001-0001-0001-0006-000000000001
+		sourceLineageTag: pr_id
+		summarizeBy: none
+		sourceColumn: pr_id
+
+	column repo_id
+		dataType: string
+		lineageTag: 30000001-0001-0001-0006-000000000002
+		sourceLineageTag: repo_id
+		summarizeBy: none
+		sourceColumn: repo_id
+
+	column repo_name
+		dataType: string
+		lineageTag: 30000001-0001-0001-0006-000000000003
+		sourceLineageTag: repo_name
+		summarizeBy: none
+		sourceColumn: repo_name
+
+	column project_name
+		dataType: string
+		lineageTag: 30000001-0001-0001-0006-000000000004
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+	column title
+		dataType: string
+		lineageTag: 30000001-0001-0001-0006-000000000005
+		sourceLineageTag: title
+		summarizeBy: none
+		sourceColumn: title
+
+	column status
+		dataType: string
+		lineageTag: 30000001-0001-0001-0006-000000000006
+		sourceLineageTag: status
+		summarizeBy: none
+		sourceColumn: status
+
+	column created_by
+		dataType: string
+		lineageTag: 30000001-0001-0001-0006-000000000007
+		sourceLineageTag: created_by
+		summarizeBy: none
+		sourceColumn: created_by
+
+	column created_by_email
+		dataType: string
+		isHidden
+		lineageTag: 30000001-0001-0001-0006-000000000008
+		sourceLineageTag: created_by_email
+		summarizeBy: none
+		sourceColumn: created_by_email
+
+	column created_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 30000001-0001-0001-0006-000000000009
+		sourceLineageTag: created_date
+		summarizeBy: none
+		sourceColumn: created_date
+
+	column closed_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 30000001-0001-0001-0006-000000000010
+		sourceLineageTag: closed_date
+		summarizeBy: none
+		sourceColumn: closed_date
+
+	column source_branch
+		dataType: string
+		lineageTag: 30000001-0001-0001-0006-000000000011
+		sourceLineageTag: source_branch
+		summarizeBy: none
+		sourceColumn: source_branch
+
+	column target_branch
+		dataType: string
+		lineageTag: 30000001-0001-0001-0006-000000000012
+		sourceLineageTag: target_branch
+		summarizeBy: none
+		sourceColumn: target_branch
+
+	column merge_status
+		dataType: string
+		lineageTag: 30000001-0001-0001-0006-000000000013
+		sourceLineageTag: merge_status
+		summarizeBy: none
+		sourceColumn: merge_status
+
+	column is_draft
+		dataType: boolean
+		lineageTag: 30000001-0001-0001-0006-000000000014
+		sourceLineageTag: is_draft
+		summarizeBy: none
+		sourceColumn: is_draft
+
+	column is_merged
+		dataType: boolean
+		lineageTag: 30000001-0001-0001-0006-000000000015
+		sourceLineageTag: is_merged
+		summarizeBy: none
+		sourceColumn: is_merged
+
+	column cycle_time_days
+		dataType: double
+		formatString: #,##0.1
+		lineageTag: 30000001-0001-0001-0006-000000000016
+		sourceLineageTag: cycle_time_days
+		summarizeBy: average
+		sourceColumn: cycle_time_days
+
+	column refreshed_at
+		dataType: dateTime
+		isHidden
+		lineageTag: 30000001-0001-0001-0006-000000000017
+		sourceLineageTag: refreshed_at
+		summarizeBy: none
+		sourceColumn: refreshed_at
+
+	partition fact_pull_requests = entity
+		mode: directLake
+		source
+			entityName: fact_pull_requests
+			expressionSource: 'DirectLake - ado_gold'

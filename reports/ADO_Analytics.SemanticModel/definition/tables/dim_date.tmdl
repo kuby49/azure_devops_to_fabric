@@ -1,0 +1,101 @@
+table dim_date
+	lineageTag: 10000001-0001-0002-0006-000000000001
+	sourceLineageTag: dim_date
+
+	column date_key
+		dataType: dateTime
+		isKey
+		formatString: Short Date
+		lineageTag: 30000001-0001-0002-0006-000000000001
+		sourceLineageTag: date_key
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 30000001-0001-0002-0006-000000000002
+		sourceLineageTag: year
+		summarizeBy: none
+		sourceColumn: year
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 30000001-0001-0002-0006-000000000003
+		sourceLineageTag: quarter
+		summarizeBy: none
+		sourceColumn: quarter
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: 30000001-0001-0002-0006-000000000004
+		sourceLineageTag: month
+		summarizeBy: none
+		sourceColumn: month
+
+	column day
+		dataType: int64
+		formatString: 0
+		lineageTag: 30000001-0001-0002-0006-000000000005
+		sourceLineageTag: day
+		summarizeBy: none
+		sourceColumn: day
+
+	column week_of_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 30000001-0001-0002-0006-000000000006
+		sourceLineageTag: week_of_year
+		summarizeBy: none
+		sourceColumn: week_of_year
+
+	column day_of_week
+		dataType: int64
+		formatString: 0
+		lineageTag: 30000001-0001-0002-0006-000000000007
+		sourceLineageTag: day_of_week
+		summarizeBy: none
+		sourceColumn: day_of_week
+
+	column day_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0006-000000000008
+		sourceLineageTag: day_name
+		summarizeBy: none
+		sourceColumn: day_name
+
+	column month_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0006-000000000009
+		sourceLineageTag: month_name
+		summarizeBy: none
+		sourceColumn: month_name
+
+	column year_month
+		dataType: string
+		lineageTag: 30000001-0001-0002-0006-000000000010
+		sourceLineageTag: year_month
+		summarizeBy: none
+		sourceColumn: year_month
+
+	column year_quarter
+		dataType: string
+		lineageTag: 30000001-0001-0002-0006-000000000011
+		sourceLineageTag: year_quarter
+		summarizeBy: none
+		sourceColumn: year_quarter
+
+	column is_weekend
+		dataType: boolean
+		lineageTag: 30000001-0001-0002-0006-000000000012
+		sourceLineageTag: is_weekend
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+	partition dim_date = entity
+		mode: directLake
+		source
+			entityName: dim_date
+			expressionSource: 'DirectLake - ado_gold'

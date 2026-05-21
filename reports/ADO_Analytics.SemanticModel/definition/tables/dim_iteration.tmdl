@@ -1,0 +1,92 @@
+table dim_iteration
+	lineageTag: 10000001-0001-0002-0002-000000000001
+	sourceLineageTag: dim_iteration
+
+	column iteration_id
+		dataType: string
+		isKey
+		lineageTag: 30000001-0001-0002-0002-000000000001
+		sourceLineageTag: iteration_id
+		summarizeBy: none
+		sourceColumn: iteration_id
+
+	column iteration_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0002-000000000002
+		sourceLineageTag: iteration_name
+		summarizeBy: none
+		sourceColumn: iteration_name
+
+	column iteration_path
+		dataType: string
+		lineageTag: 30000001-0001-0002-0002-000000000003
+		sourceLineageTag: iteration_path
+		summarizeBy: none
+		sourceColumn: iteration_path
+
+	column team_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0002-000000000004
+		sourceLineageTag: team_name
+		summarizeBy: none
+		sourceColumn: team_name
+
+	column team_id
+		dataType: string
+		isHidden
+		lineageTag: 30000001-0001-0002-0002-000000000005
+		sourceLineageTag: team_id
+		summarizeBy: none
+		sourceColumn: team_id
+
+	column project_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0002-000000000006
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+	column project_id
+		dataType: string
+		isHidden
+		lineageTag: 30000001-0001-0002-0002-000000000007
+		sourceLineageTag: project_id
+		summarizeBy: none
+		sourceColumn: project_id
+
+	column start_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 30000001-0001-0002-0002-000000000008
+		sourceLineageTag: start_date
+		summarizeBy: none
+		sourceColumn: start_date
+
+	column finish_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 30000001-0001-0002-0002-000000000009
+		sourceLineageTag: finish_date
+		summarizeBy: none
+		sourceColumn: finish_date
+
+	column time_frame
+		dataType: string
+		lineageTag: 30000001-0001-0002-0002-000000000010
+		sourceLineageTag: time_frame
+		summarizeBy: none
+		sourceColumn: time_frame
+
+	column refreshed_at
+		dataType: dateTime
+		isHidden
+		lineageTag: 30000001-0001-0002-0002-000000000011
+		sourceLineageTag: refreshed_at
+		summarizeBy: none
+		sourceColumn: refreshed_at
+
+	partition dim_iteration = entity
+		mode: directLake
+		source
+			entityName: dim_iteration
+			expressionSource: 'DirectLake - ado_gold'

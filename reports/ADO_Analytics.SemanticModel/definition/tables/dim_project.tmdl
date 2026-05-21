@@ -1,0 +1,33 @@
+table dim_project
+	lineageTag: 10000001-0001-0002-0001-000000000001
+	sourceLineageTag: dim_project
+
+	column project_name
+		dataType: string
+		isKey
+		lineageTag: 30000001-0001-0002-0001-000000000001
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+	column project_id
+		dataType: string
+		isHidden
+		lineageTag: 30000001-0001-0002-0001-000000000002
+		sourceLineageTag: project_id
+		summarizeBy: none
+		sourceColumn: project_id
+
+	column refreshed_at
+		dataType: dateTime
+		isHidden
+		lineageTag: 30000001-0001-0002-0001-000000000003
+		sourceLineageTag: refreshed_at
+		summarizeBy: none
+		sourceColumn: refreshed_at
+
+	partition dim_project = entity
+		mode: directLake
+		source
+			entityName: dim_project
+			expressionSource: 'DirectLake - ado_gold'

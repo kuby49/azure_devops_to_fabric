@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "v_pr_merge_card",
+  "position": {
+    "x": 680,
+    "y": 20,
+    "z": 3,
+    "height": 100,
+    "width": 200,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_pull_requests"
+                    }
+                  },
+                  "Property": "Avg PR Merge Time (Days)"
+                }
+              },
+              "queryRef": "fact_pull_requests.Avg PR Merge Time (Days)",
+              "nativeQueryRef": "Avg PR Merge Time (Days)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

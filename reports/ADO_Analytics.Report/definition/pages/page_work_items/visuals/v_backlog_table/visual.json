@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "v_backlog_table",
+  "position": {
+    "x": 20,
+    "y": 440,
+    "z": 7,
+    "height": 260,
+    "width": 600,
+    "tabOrder": 7
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_backlog_health"
+                    }
+                  },
+                  "Property": "project_name"
+                }
+              },
+              "queryRef": "fact_backlog_health.project_name",
+              "nativeQueryRef": "project_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_backlog_health"
+                    }
+                  },
+                  "Property": "work_item_type"
+                }
+              },
+              "queryRef": "fact_backlog_health.work_item_type",
+              "nativeQueryRef": "work_item_type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_backlog_health"
+                    }
+                  },
+                  "Property": "open_count"
+                }
+              },
+              "queryRef": "fact_backlog_health.open_count",
+              "nativeQueryRef": "open_count"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_backlog_health"
+                    }
+                  },
+                  "Property": "avg_age_days"
+                }
+              },
+              "queryRef": "fact_backlog_health.avg_age_days",
+              "nativeQueryRef": "avg_age_days"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_backlog_health"
+                    }
+                  },
+                  "Property": "unestimated_pct"
+                }
+              },
+              "queryRef": "fact_backlog_health.unestimated_pct",
+              "nativeQueryRef": "unestimated_pct"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

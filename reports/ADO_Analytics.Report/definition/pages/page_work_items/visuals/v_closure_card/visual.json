@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "v_closure_card",
+  "position": {
+    "x": 680,
+    "y": 20,
+    "z": 3,
+    "height": 100,
+    "width": 200,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_work_items"
+                    }
+                  },
+                  "Property": "Closure Rate %"
+                }
+              },
+              "queryRef": "fact_work_items.Closure Rate %",
+              "nativeQueryRef": "Closure Rate %"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

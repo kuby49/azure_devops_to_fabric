@@ -1,0 +1,91 @@
+table dim_board
+	lineageTag: 10000001-0001-0002-0005-000000000001
+	sourceLineageTag: dim_board
+
+	column board_id
+		dataType: string
+		lineageTag: 30000001-0001-0002-0005-000000000001
+		sourceLineageTag: board_id
+		summarizeBy: none
+		sourceColumn: board_id
+
+	column board_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0005-000000000002
+		sourceLineageTag: board_name
+		summarizeBy: none
+		sourceColumn: board_name
+
+	column team_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0005-000000000003
+		sourceLineageTag: team_name
+		summarizeBy: none
+		sourceColumn: team_name
+
+	column project_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0005-000000000004
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+	column project_id
+		dataType: string
+		isHidden
+		lineageTag: 30000001-0001-0002-0005-000000000005
+		sourceLineageTag: project_id
+		summarizeBy: none
+		sourceColumn: project_id
+
+	column column_id
+		dataType: string
+		isKey
+		lineageTag: 30000001-0001-0002-0005-000000000006
+		sourceLineageTag: column_id
+		summarizeBy: none
+		sourceColumn: column_id
+
+	column column_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0005-000000000007
+		sourceLineageTag: column_name
+		summarizeBy: none
+		sourceColumn: column_name
+
+	column wip_limit
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0002-0005-000000000008
+		sourceLineageTag: wip_limit
+		summarizeBy: none
+		sourceColumn: wip_limit
+
+	column is_split
+		dataType: boolean
+		isHidden
+		lineageTag: 30000001-0001-0002-0005-000000000009
+		sourceLineageTag: is_split
+		summarizeBy: none
+		sourceColumn: is_split
+
+	column column_type
+		dataType: string
+		lineageTag: 30000001-0001-0002-0005-000000000010
+		sourceLineageTag: column_type
+		summarizeBy: none
+		sourceColumn: column_type
+
+	column refreshed_at
+		dataType: dateTime
+		isHidden
+		lineageTag: 30000001-0001-0002-0005-000000000011
+		sourceLineageTag: refreshed_at
+		summarizeBy: none
+		sourceColumn: refreshed_at
+
+	partition dim_board = entity
+		mode: directLake
+		source
+			entityName: dim_board
+			expressionSource: 'DirectLake - ado_gold'

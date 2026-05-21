@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "v_story_pts_card",
+  "position": {
+    "x": 240,
+    "y": 20,
+    "z": 1,
+    "height": 100,
+    "width": 200,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_work_items"
+                    }
+                  },
+                  "Property": "Total Story Points"
+                }
+              },
+              "queryRef": "fact_work_items.Total Story Points",
+              "nativeQueryRef": "Total Story Points"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

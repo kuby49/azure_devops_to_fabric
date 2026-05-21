@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "v_ex_completion_table",
+  "position": {
+    "x": 20,
+    "y": 440,
+    "z": 9,
+    "height": 260,
+    "width": 1220,
+    "tabOrder": 9
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_sprint_metrics"
+                    }
+                  },
+                  "Property": "iteration_name"
+                }
+              },
+              "queryRef": "fact_sprint_metrics.iteration_name",
+              "nativeQueryRef": "iteration_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_sprint_metrics"
+                    }
+                  },
+                  "Property": "team_name"
+                }
+              },
+              "queryRef": "fact_sprint_metrics.team_name",
+              "nativeQueryRef": "team_name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_sprint_metrics"
+                    }
+                  },
+                  "Property": "Sprint Velocity"
+                }
+              },
+              "queryRef": "fact_sprint_metrics.Sprint Velocity",
+              "nativeQueryRef": "Sprint Velocity"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_sprint_metrics"
+                    }
+                  },
+                  "Property": "Completion Rate %"
+                }
+              },
+              "queryRef": "fact_sprint_metrics.Completion Rate %",
+              "nativeQueryRef": "Completion Rate %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_sprint_metrics"
+                    }
+                  },
+                  "Property": "Avg Sprint Cycle Time"
+                }
+              },
+              "queryRef": "fact_sprint_metrics.Avg Sprint Cycle Time",
+              "nativeQueryRef": "Avg Sprint Cycle Time"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

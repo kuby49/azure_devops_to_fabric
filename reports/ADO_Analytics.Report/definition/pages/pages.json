@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+  "pageOrder": [
+    "page_sprint_velocity",
+    "page_work_items",
+    "page_code_activity",
+    "page_board_flow",
+    "page_exec_summary"
+  ],
+  "activePageName": "page_sprint_velocity"
+}

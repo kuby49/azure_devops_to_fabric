@@ -1,0 +1,216 @@
+table fact_work_items
+	lineageTag: 10000001-0001-0001-0001-000000000001
+	sourceLineageTag: fact_work_items
+
+	measure 'Total Work Items' = COUNTROWS(fact_work_items)
+		formatString: #,##0
+		lineageTag: 20000001-0001-0001-0001-000000000001
+
+	measure 'Total Story Points' = SUM(fact_work_items[story_points])
+		formatString: #,##0.0
+		lineageTag: 20000001-0001-0001-0001-000000000002
+
+	measure 'Avg Cycle Time (Days)' = AVERAGE(fact_work_items[cycle_time_days])
+		formatString: #,##0.0
+		lineageTag: 20000001-0001-0001-0001-000000000003
+
+	measure 'Avg Age (Days)' = AVERAGE(fact_work_items[age_days])
+		formatString: #,##0.0
+		lineageTag: 20000001-0001-0001-0001-000000000004
+
+	measure 'Closed Items' = CALCULATE(COUNTROWS(fact_work_items), fact_work_items[is_closed] = TRUE())
+		formatString: #,##0
+		lineageTag: 20000001-0001-0001-0001-000000000005
+
+	measure 'Open Items' = CALCULATE(COUNTROWS(fact_work_items), fact_work_items[is_closed] = FALSE())
+		formatString: #,##0
+		lineageTag: 20000001-0001-0001-0001-000000000006
+
+	measure 'Closure Rate %' = DIVIDE([Closed Items], [Total Work Items], 0) * 100
+		formatString: #,##0.0"%"
+		lineageTag: 20000001-0001-0001-0001-000000000007
+
+	column work_item_id
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 30000001-0001-0001-0001-000000000001
+		sourceLineageTag: work_item_id
+		summarizeBy: none
+		sourceColumn: work_item_id
+
+	column project_name
+		dataType: string
+		lineageTag: 30000001-0001-0001-0001-000000000002
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+	column work_item_type
+		dataType: string
+		lineageTag: 30000001-0001-0001-0001-000000000003
+		sourceLineageTag: work_item_type
+		summarizeBy: none
+		sourceColumn: work_item_type
+
+	column state
+		dataType: string
+		lineageTag: 30000001-0001-0001-0001-000000000004
+		sourceLineageTag: state
+		summarizeBy: none
+		sourceColumn: state
+
+	column assigned_to
+		dataType: string
+		lineageTag: 30000001-0001-0001-0001-000000000005
+		sourceLineageTag: assigned_to
+		summarizeBy: none
+		sourceColumn: assigned_to
+
+	column assigned_to_email
+		dataType: string
+		isHidden
+		lineageTag: 30000001-0001-0001-0001-000000000006
+		sourceLineageTag: assigned_to_email
+		summarizeBy: none
+		sourceColumn: assigned_to_email
+
+	column iteration_path
+		dataType: string
+		lineageTag: 30000001-0001-0001-0001-000000000007
+		sourceLineageTag: iteration_path
+		summarizeBy: none
+		sourceColumn: iteration_path
+
+	column area_path
+		dataType: string
+		lineageTag: 30000001-0001-0001-0001-000000000008
+		sourceLineageTag: area_path
+		summarizeBy: none
+		sourceColumn: area_path
+
+	column story_points
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 30000001-0001-0001-0001-000000000009
+		sourceLineageTag: story_points
+		summarizeBy: sum
+		sourceColumn: story_points
+
+	column priority
+		dataType: int64
+		formatString: 0
+		lineageTag: 30000001-0001-0001-0001-000000000010
+		sourceLineageTag: priority
+		summarizeBy: none
+		sourceColumn: priority
+
+	column parent_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 30000001-0001-0001-0001-000000000011
+		sourceLineageTag: parent_id
+		summarizeBy: none
+		sourceColumn: parent_id
+
+	column board_column
+		dataType: string
+		lineageTag: 30000001-0001-0001-0001-000000000012
+		sourceLineageTag: board_column
+		summarizeBy: none
+		sourceColumn: board_column
+
+	column board_column_done
+		dataType: boolean
+		isHidden
+		lineageTag: 30000001-0001-0001-0001-000000000013
+		sourceLineageTag: board_column_done
+		summarizeBy: none
+		sourceColumn: board_column_done
+
+	column backlog_priority
+		dataType: double
+		isHidden
+		lineageTag: 30000001-0001-0001-0001-000000000014
+		sourceLineageTag: backlog_priority
+		summarizeBy: none
+		sourceColumn: backlog_priority
+
+	column created_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 30000001-0001-0001-0001-000000000015
+		sourceLineageTag: created_date
+		summarizeBy: none
+		sourceColumn: created_date
+
+	column changed_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 30000001-0001-0001-0001-000000000016
+		sourceLineageTag: changed_date
+		summarizeBy: none
+		sourceColumn: changed_date
+
+	column closed_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 30000001-0001-0001-0001-000000000017
+		sourceLineageTag: closed_date
+		summarizeBy: none
+		sourceColumn: closed_date
+
+	column state_change_date
+		dataType: dateTime
+		formatString: Short Date
+		isHidden
+		lineageTag: 30000001-0001-0001-0001-000000000018
+		sourceLineageTag: state_change_date
+		summarizeBy: none
+		sourceColumn: state_change_date
+
+	column is_closed
+		dataType: boolean
+		lineageTag: 30000001-0001-0001-0001-000000000019
+		sourceLineageTag: is_closed
+		summarizeBy: none
+		sourceColumn: is_closed
+
+	column tags
+		dataType: string
+		isHidden
+		lineageTag: 30000001-0001-0001-0001-000000000020
+		sourceLineageTag: tags
+		summarizeBy: none
+		sourceColumn: tags
+
+	column age_days
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 30000001-0001-0001-0001-000000000021
+		sourceLineageTag: age_days
+		summarizeBy: average
+		sourceColumn: age_days
+
+	column cycle_time_days
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 30000001-0001-0001-0001-000000000022
+		sourceLineageTag: cycle_time_days
+		summarizeBy: average
+		sourceColumn: cycle_time_days
+
+	column refreshed_at
+		dataType: dateTime
+		isHidden
+		lineageTag: 30000001-0001-0001-0001-000000000023
+		sourceLineageTag: refreshed_at
+		summarizeBy: none
+		sourceColumn: refreshed_at
+
+	partition fact_work_items = entity
+		mode: directLake
+		source
+			entityName: fact_work_items
+			expressionSource: 'DirectLake - ado_gold'

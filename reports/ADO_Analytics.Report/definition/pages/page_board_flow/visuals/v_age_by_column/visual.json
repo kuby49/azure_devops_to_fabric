@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "v_age_by_column",
+  "position": {
+    "x": 20,
+    "y": 460,
+    "z": 3,
+    "height": 240,
+    "width": 1220,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_board_flow"
+                    }
+                  },
+                  "Property": "project_name"
+                }
+              },
+              "queryRef": "fact_board_flow.project_name",
+              "nativeQueryRef": "project_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_board_flow"
+                    }
+                  },
+                  "Property": "board_column"
+                }
+              },
+              "queryRef": "fact_board_flow.board_column",
+              "nativeQueryRef": "board_column"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_board_flow"
+                    }
+                  },
+                  "Property": "item_count"
+                }
+              },
+              "queryRef": "fact_board_flow.item_count",
+              "nativeQueryRef": "item_count"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_board_flow"
+                    }
+                  },
+                  "Property": "total_story_points"
+                }
+              },
+              "queryRef": "fact_board_flow.total_story_points",
+              "nativeQueryRef": "total_story_points"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_board_flow"
+                    }
+                  },
+                  "Property": "avg_age_days"
+                }
+              },
+              "queryRef": "fact_board_flow.avg_age_days",
+              "nativeQueryRef": "avg_age_days"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

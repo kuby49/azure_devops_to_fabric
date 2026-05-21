@@ -1,0 +1,78 @@
+table dim_repository
+	lineageTag: 10000001-0001-0002-0004-000000000001
+	sourceLineageTag: dim_repository
+
+	column repo_id
+		dataType: string
+		isKey
+		lineageTag: 30000001-0001-0002-0004-000000000001
+		sourceLineageTag: repo_id
+		summarizeBy: none
+		sourceColumn: repo_id
+
+	column repo_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0004-000000000002
+		sourceLineageTag: repo_name
+		summarizeBy: none
+		sourceColumn: repo_name
+
+	column project_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0004-000000000003
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+	column project_id
+		dataType: string
+		isHidden
+		lineageTag: 30000001-0001-0002-0004-000000000004
+		sourceLineageTag: project_id
+		summarizeBy: none
+		sourceColumn: project_id
+
+	column default_branch
+		dataType: string
+		lineageTag: 30000001-0001-0002-0004-000000000005
+		sourceLineageTag: default_branch
+		summarizeBy: none
+		sourceColumn: default_branch
+
+	column size
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0002-0004-000000000006
+		sourceLineageTag: size
+		summarizeBy: sum
+		sourceColumn: size
+
+	column is_fork
+		dataType: boolean
+		isHidden
+		lineageTag: 30000001-0001-0002-0004-000000000007
+		sourceLineageTag: is_fork
+		summarizeBy: none
+		sourceColumn: is_fork
+
+	column is_disabled
+		dataType: boolean
+		isHidden
+		lineageTag: 30000001-0001-0002-0004-000000000008
+		sourceLineageTag: is_disabled
+		summarizeBy: none
+		sourceColumn: is_disabled
+
+	column refreshed_at
+		dataType: dateTime
+		isHidden
+		lineageTag: 30000001-0001-0002-0004-000000000009
+		sourceLineageTag: refreshed_at
+		summarizeBy: none
+		sourceColumn: refreshed_at
+
+	partition dim_repository = entity
+		mode: directLake
+		source
+			entityName: dim_repository
+			expressionSource: 'DirectLake - ado_gold'

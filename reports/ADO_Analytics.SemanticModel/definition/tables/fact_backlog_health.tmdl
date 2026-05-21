@@ -1,0 +1,106 @@
+table fact_backlog_health
+	lineageTag: 10000001-0001-0001-0004-000000000001
+	sourceLineageTag: fact_backlog_health
+
+	measure 'Backlog Health Score' =
+			VAR unest = AVERAGE(fact_backlog_health[unestimated_pct])
+			VAR avgAge = AVERAGE(fact_backlog_health[avg_age_days])
+			RETURN 100 - (unest * 0.5 + MIN(avgAge, 100) * 0.5)
+		formatString: #,##0.0
+		lineageTag: 20000001-0001-0001-0004-000000000001
+
+	measure 'Unestimated %' = AVERAGE(fact_backlog_health[unestimated_pct])
+		formatString: #,##0.0"%"
+		lineageTag: 20000001-0001-0001-0004-000000000002
+
+	column project_name
+		dataType: string
+		lineageTag: 30000001-0001-0001-0004-000000000001
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+	column work_item_type
+		dataType: string
+		lineageTag: 30000001-0001-0001-0004-000000000002
+		sourceLineageTag: work_item_type
+		summarizeBy: none
+		sourceColumn: work_item_type
+
+	column total_count
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0001-0004-000000000003
+		sourceLineageTag: total_count
+		summarizeBy: sum
+		sourceColumn: total_count
+
+	column closed_count
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0001-0004-000000000004
+		sourceLineageTag: closed_count
+		summarizeBy: sum
+		sourceColumn: closed_count
+
+	column open_count
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0001-0004-000000000005
+		sourceLineageTag: open_count
+		summarizeBy: sum
+		sourceColumn: open_count
+
+	column unestimated_count
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0001-0004-000000000006
+		sourceLineageTag: unestimated_count
+		summarizeBy: sum
+		sourceColumn: unestimated_count
+
+	column total_story_points
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 30000001-0001-0001-0004-000000000007
+		sourceLineageTag: total_story_points
+		summarizeBy: sum
+		sourceColumn: total_story_points
+
+	column avg_age_days
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 30000001-0001-0001-0004-000000000008
+		sourceLineageTag: avg_age_days
+		summarizeBy: average
+		sourceColumn: avg_age_days
+
+	column max_age_days
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 30000001-0001-0001-0004-000000000009
+		sourceLineageTag: max_age_days
+		summarizeBy: max
+		sourceColumn: max_age_days
+
+	column unestimated_pct
+		dataType: double
+		formatString: #,##0.0"%"
+		lineageTag: 30000001-0001-0001-0004-000000000010
+		sourceLineageTag: unestimated_pct
+		summarizeBy: average
+		sourceColumn: unestimated_pct
+
+	column refreshed_at
+		dataType: dateTime
+		isHidden
+		lineageTag: 30000001-0001-0001-0004-000000000011
+		sourceLineageTag: refreshed_at
+		summarizeBy: none
+		sourceColumn: refreshed_at
+
+	partition fact_backlog_health = entity
+		mode: directLake
+		source
+			entityName: fact_backlog_health
+			expressionSource: 'DirectLake - ado_gold'

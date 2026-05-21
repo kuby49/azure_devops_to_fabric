@@ -1,0 +1,62 @@
+table dim_team_member
+	lineageTag: 10000001-0001-0002-0003-000000000001
+	sourceLineageTag: dim_team_member
+
+	column member_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0003-000000000001
+		sourceLineageTag: member_name
+		summarizeBy: none
+		sourceColumn: member_name
+
+	column member_email
+		dataType: string
+		isKey
+		lineageTag: 30000001-0001-0002-0003-000000000002
+		sourceLineageTag: member_email
+		summarizeBy: none
+		sourceColumn: member_email
+
+	column team_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0003-000000000003
+		sourceLineageTag: team_name
+		summarizeBy: none
+		sourceColumn: team_name
+
+	column project_name
+		dataType: string
+		lineageTag: 30000001-0001-0002-0003-000000000004
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+	column activity
+		dataType: string
+		lineageTag: 30000001-0001-0002-0003-000000000005
+		sourceLineageTag: activity
+		summarizeBy: none
+		sourceColumn: activity
+
+	column member_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 30000001-0001-0002-0003-000000000006
+		sourceLineageTag: member_id
+		summarizeBy: none
+		sourceColumn: member_id
+
+	column refreshed_at
+		dataType: dateTime
+		isHidden
+		lineageTag: 30000001-0001-0002-0003-000000000007
+		sourceLineageTag: refreshed_at
+		summarizeBy: none
+		sourceColumn: refreshed_at
+
+	partition dim_team_member = entity
+		mode: directLake
+		source
+			entityName: dim_team_member
+			expressionSource: 'DirectLake - ado_gold'

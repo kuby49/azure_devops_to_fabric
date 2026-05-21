@@ -1,0 +1,60 @@
+relationship rel_work_items_project
+	fromColumn: fact_work_items.project_name
+	toColumn: dim_project.project_name
+
+relationship rel_work_items_date
+	fromColumn: fact_work_items.created_date
+	toColumn: dim_date.date_key
+
+relationship rel_work_items_closed_date
+	isActive: false
+	fromColumn: fact_work_items.closed_date
+	toColumn: dim_date.date_key
+
+relationship rel_sprint_metrics_iteration
+	fromColumn: fact_sprint_metrics.iteration_id
+	toColumn: dim_iteration.iteration_id
+
+relationship rel_sprint_metrics_project
+	fromColumn: fact_sprint_metrics.project_name
+	toColumn: dim_project.project_name
+
+relationship rel_sprint_backlog_iteration
+	fromColumn: fact_sprint_backlog.iteration_id
+	toColumn: dim_iteration.iteration_id
+
+relationship rel_sprint_backlog_project
+	fromColumn: fact_sprint_backlog.project_name
+	toColumn: dim_project.project_name
+
+relationship rel_backlog_health_project
+	fromColumn: fact_backlog_health.project_name
+	toColumn: dim_project.project_name
+
+relationship rel_commits_repo
+	fromColumn: fact_commits.repo_id
+	toColumn: dim_repository.repo_id
+
+relationship rel_commits_project
+	fromColumn: fact_commits.project_name
+	toColumn: dim_project.project_name
+
+relationship rel_commits_date
+	fromColumn: fact_commits.author_date
+	toColumn: dim_date.date_key
+
+relationship rel_prs_repo
+	fromColumn: fact_pull_requests.repo_id
+	toColumn: dim_repository.repo_id
+
+relationship rel_prs_project
+	fromColumn: fact_pull_requests.project_name
+	toColumn: dim_project.project_name
+
+relationship rel_prs_date
+	fromColumn: fact_pull_requests.created_date
+	toColumn: dim_date.date_key
+
+relationship rel_board_flow_project
+	fromColumn: fact_board_flow.project_name
+	toColumn: dim_project.project_name

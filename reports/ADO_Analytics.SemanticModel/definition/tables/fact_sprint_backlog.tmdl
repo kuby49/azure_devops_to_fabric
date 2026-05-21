@@ -1,0 +1,90 @@
+table fact_sprint_backlog
+	lineageTag: 10000001-0001-0001-0003-000000000001
+	sourceLineageTag: fact_sprint_backlog
+
+	column iteration_id
+		dataType: string
+		lineageTag: 30000001-0001-0001-0003-000000000001
+		sourceLineageTag: iteration_id
+		summarizeBy: none
+		sourceColumn: iteration_id
+
+	column team_name
+		dataType: string
+		lineageTag: 30000001-0001-0001-0003-000000000002
+		sourceLineageTag: team_name
+		summarizeBy: none
+		sourceColumn: team_name
+
+	column project_name
+		dataType: string
+		lineageTag: 30000001-0001-0001-0003-000000000003
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+	column work_item_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 30000001-0001-0001-0003-000000000004
+		sourceLineageTag: work_item_id
+		summarizeBy: none
+		sourceColumn: work_item_id
+
+	column work_item_type
+		dataType: string
+		lineageTag: 30000001-0001-0001-0003-000000000005
+		sourceLineageTag: work_item_type
+		summarizeBy: none
+		sourceColumn: work_item_type
+
+	column state
+		dataType: string
+		lineageTag: 30000001-0001-0001-0003-000000000006
+		sourceLineageTag: state
+		summarizeBy: none
+		sourceColumn: state
+
+	column story_points
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 30000001-0001-0001-0003-000000000007
+		sourceLineageTag: story_points
+		summarizeBy: sum
+		sourceColumn: story_points
+
+	column assigned_to
+		dataType: string
+		lineageTag: 30000001-0001-0001-0003-000000000008
+		sourceLineageTag: assigned_to
+		summarizeBy: none
+		sourceColumn: assigned_to
+
+	column is_closed
+		dataType: boolean
+		lineageTag: 30000001-0001-0001-0003-000000000009
+		sourceLineageTag: is_closed
+		summarizeBy: none
+		sourceColumn: is_closed
+
+	column priority
+		dataType: int64
+		formatString: 0
+		lineageTag: 30000001-0001-0001-0003-000000000010
+		sourceLineageTag: priority
+		summarizeBy: none
+		sourceColumn: priority
+
+	column refreshed_at
+		dataType: dateTime
+		isHidden
+		lineageTag: 30000001-0001-0001-0003-000000000011
+		sourceLineageTag: refreshed_at
+		summarizeBy: none
+		sourceColumn: refreshed_at
+
+	partition fact_sprint_backlog = entity
+		mode: directLake
+		source
+			entityName: fact_sprint_backlog
+			expressionSource: 'DirectLake - ado_gold'

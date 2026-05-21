@@ -1,0 +1,164 @@
+table fact_sprint_metrics
+	lineageTag: 10000001-0001-0001-0002-000000000001
+	sourceLineageTag: fact_sprint_metrics
+
+	measure 'Sprint Velocity' = SUM(fact_sprint_metrics[completed_story_points])
+		formatString: #,##0.0
+		lineageTag: 20000001-0001-0001-0002-000000000001
+
+	measure 'Completion Rate %' = DIVIDE(SUM(fact_sprint_metrics[completed_items]), SUM(fact_sprint_metrics[total_items]), 0) * 100
+		formatString: #,##0.0"%"
+		lineageTag: 20000001-0001-0001-0002-000000000002
+
+	measure 'Avg Sprint Cycle Time' = AVERAGE(fact_sprint_metrics[avg_cycle_time_days])
+		formatString: #,##0.1
+		lineageTag: 20000001-0001-0001-0002-000000000003
+
+	measure 'Avg Team Size' = AVERAGE(fact_sprint_metrics[team_members_active])
+		formatString: #,##0.0
+		lineageTag: 20000001-0001-0001-0002-000000000004
+
+	column iteration_id
+		dataType: string
+		lineageTag: 30000001-0001-0001-0002-000000000001
+		sourceLineageTag: iteration_id
+		summarizeBy: none
+		sourceColumn: iteration_id
+
+	column team_name
+		dataType: string
+		lineageTag: 30000001-0001-0001-0002-000000000002
+		sourceLineageTag: team_name
+		summarizeBy: none
+		sourceColumn: team_name
+
+	column project_name
+		dataType: string
+		lineageTag: 30000001-0001-0001-0002-000000000003
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+	column total_items
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0001-0002-000000000004
+		sourceLineageTag: total_items
+		summarizeBy: sum
+		sourceColumn: total_items
+
+	column completed_items
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0001-0002-000000000005
+		sourceLineageTag: completed_items
+		summarizeBy: sum
+		sourceColumn: completed_items
+
+	column incomplete_items
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0001-0002-000000000006
+		sourceLineageTag: incomplete_items
+		summarizeBy: sum
+		sourceColumn: incomplete_items
+
+	column total_story_points
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 30000001-0001-0001-0002-000000000007
+		sourceLineageTag: total_story_points
+		summarizeBy: sum
+		sourceColumn: total_story_points
+
+	column completed_story_points
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 30000001-0001-0001-0002-000000000008
+		sourceLineageTag: completed_story_points
+		summarizeBy: sum
+		sourceColumn: completed_story_points
+
+	column avg_cycle_time_days
+		dataType: double
+		formatString: #,##0.1
+		lineageTag: 30000001-0001-0001-0002-000000000009
+		sourceLineageTag: avg_cycle_time_days
+		summarizeBy: average
+		sourceColumn: avg_cycle_time_days
+
+	column team_members_active
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 30000001-0001-0001-0002-000000000010
+		sourceLineageTag: team_members_active
+		summarizeBy: sum
+		sourceColumn: team_members_active
+
+	column iteration_name
+		dataType: string
+		lineageTag: 30000001-0001-0001-0002-000000000011
+		sourceLineageTag: iteration_name
+		summarizeBy: none
+		sourceColumn: iteration_name
+
+	column start_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 30000001-0001-0001-0002-000000000012
+		sourceLineageTag: start_date
+		summarizeBy: none
+		sourceColumn: start_date
+
+	column finish_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 30000001-0001-0001-0002-000000000013
+		sourceLineageTag: finish_date
+		summarizeBy: none
+		sourceColumn: finish_date
+
+	column time_frame
+		dataType: string
+		lineageTag: 30000001-0001-0001-0002-000000000014
+		sourceLineageTag: time_frame
+		summarizeBy: none
+		sourceColumn: time_frame
+
+	column velocity
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 30000001-0001-0001-0002-000000000015
+		sourceLineageTag: velocity
+		summarizeBy: sum
+		sourceColumn: velocity
+
+	column completion_rate
+		dataType: double
+		formatString: #,##0.0"%"
+		lineageTag: 30000001-0001-0001-0002-000000000016
+		sourceLineageTag: completion_rate
+		summarizeBy: average
+		sourceColumn: completion_rate
+
+	column scope_change_pct
+		dataType: double
+		isHidden
+		lineageTag: 30000001-0001-0001-0002-000000000017
+		sourceLineageTag: scope_change_pct
+		summarizeBy: none
+		sourceColumn: scope_change_pct
+
+	column refreshed_at
+		dataType: dateTime
+		isHidden
+		lineageTag: 30000001-0001-0001-0002-000000000018
+		sourceLineageTag: refreshed_at
+		summarizeBy: none
+		sourceColumn: refreshed_at
+
+	partition fact_sprint_metrics = entity
+		mode: directLake
+		source
+			entityName: fact_sprint_metrics
+			expressionSource: 'DirectLake - ado_gold'
